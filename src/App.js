@@ -4,17 +4,24 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
 import { auth } from "./firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout, selectUser } from "./features/userSlice";
 
 function App() {
-  const user = null;
-
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
   //listen to the users logged in user state
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
-        console.log(userAuth);
+        dispatch(
+          login({
+            uid: userAuth.uid,
+            email: userAuth.email,
+          })
+        );
       } else {
-        // Loged out
+        dispatch(logout);
       }
     });
 
