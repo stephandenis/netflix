@@ -1,17 +1,16 @@
-import Banner from "./Banner";
+import Banner from "../Banner";
 import "./HomeScreen.css";
-import Navbar from "./Navbar";
-import requests from "./Requests";
-import Row from "./Row";
+import Navbar from "../Navbar";
+import requests from "../Requests";
+import Row from "../Row";
 
 const HomeScreen = () => {
   return (
     <div className="homeScreen">
-      {/* Nav */}
       <Navbar />
-      {/* Banner */}
+
       <Banner />
-      {/* Rows */}
+
       <Row
         title="NETFLIX ORIGINALS"
         fetchUrl={requests.fetchNetflixOriginals}
